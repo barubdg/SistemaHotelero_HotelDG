@@ -8,11 +8,14 @@ package Controlador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author Virglio Ramos
- * 
- */
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
+
+@Path("usuarios")
 public class ConexionCli {
     private Connection con;
 
