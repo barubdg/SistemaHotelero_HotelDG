@@ -8,6 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean
+@RequestScoped
 public class Conexion {
     private static final String URL = "jdbc:mysql://localhost:3307/sigh_hoteldg";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
