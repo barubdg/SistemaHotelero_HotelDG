@@ -2,13 +2,18 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="Modelo.Cliente" %>
 <%@page import="DAO.ClienteDAO" %>
-<%@ page import="java.io.*" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="com.itextpdf.text.*" %>
-<%@ page import="com.itextpdf.text.pdf.*" %>
-<%@ page import="org.apache.poi.ss.usermodel.*" %>
-<%@ page import="org.apache.poi.xssf.usermodel.XSSFWorkbook" %>
-<%@ page import="org.apache.poi.hssf.usermodel.*" %>
+<%@page import="java.io.*" %>
+<%@page import="java.sql.*" %>
+<%@page import="com.itextpdf.text.*" %>
+<%@page import="com.itextpdf.text.pdf.*" %>
+<%@page import="org.apache.poi.ss.usermodel.*" %>
+<%@page import="org.apache.poi.xssf.usermodel.XSSFWorkbook" %>
+<%@page import="org.apache.poi.hssf.usermodel.*" %>
+<%@page import="jakarta.ws.rs.client.Client" %>
+<%@page import="jakarta.ws.rs.client.ClientBuilder" %>
+<%@page import="jakarta.ws.rs.client.WebTarget" %>
+<%@page import="jakarta.ws.rs.core.MediaType" %>
+<%@page import="jakarta.ws.rs.core.Response" %>
 <!DOCTYPE html>
 
 <html>
@@ -22,9 +27,19 @@
     <body>
         <%! 
             ClienteDAO clienteDAO = new ClienteDAO();
+
+            // Method to call a REST API using Jakarta REST client
+            public String callRestApi() {
+                Client client = ClientBuilder.newClient();
+                WebTarget target = client.target("http://your-api-endpoint.com/api/resource");
+                Response response = target.request(MediaType.APPLICATION_JSON).get();
+                String result = response.readEntity(String.class);
+                response.close();
+                client.close();
+                return result;
+            }
         %>
         <div class="container">
-            
             <hr>
             <div class="row align-items-start">
                 <div class="col-9"><h1>Clientes</h1></div>
@@ -36,8 +51,6 @@
                     </div>                    
                 </div>
             </div>
-            
-            
             <hr>
             <div class="table-responsive">
                 <table class="table table-striped" id="mydataTable">
